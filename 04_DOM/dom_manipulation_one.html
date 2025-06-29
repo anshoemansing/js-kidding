@@ -1,0 +1,70 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    <div class="parent">
+        <div class="day">Mon</div>
+        <div class="day">Tue</div>
+        <div class="day">Wed</div>
+        <div class="day">Thu</div>
+    </div>
+</body>
+
+<script>
+    const parent = document.querySelector('.parent');
+    // console.log("NODES: ", parent.childNodes);
+
+    // ✅ Create a new div element
+    const newDiv = document.createElement('div');
+
+    // ✅ Set text and styles
+    newDiv.textContent = "I'm a new div added to the body!";
+    newDiv.style.padding = "10px";
+    newDiv.style.marginTop = "20px";
+    newDiv.style.backgroundColor = "#444";
+
+    // ✅ Append to the <body>
+    document.body.appendChild(newDiv);
+</script>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DOM Manipulation</title>
+</head>
+<body style="background-color: #212121; color: #fff;" onload="addDivs()">
+  <div class="parent">
+    <div class="day">Mon</div>
+    <div class="day">Tue</div>
+    <div class="day">Wed</div>
+    <div class="day">Thu</div>
+  </div>
+
+  <script>
+    function addDivs() {
+      const colors = ["#ff6b6b", "#feca57", "#1dd1a1", "#54a0ff", "#5f27cd"];
+
+      for (let i = 0; i < 5; i++) {
+        const newDiv = document.createElement("div");
+        newDiv.textContent = `I'm div number ${i + 1}`;
+        newDiv.style.backgroundColor = colors[i];
+        newDiv.style.padding = "10px";
+        newDiv.style.marginTop = "10px";
+        newDiv.style.color = "#fff";
+        newDiv.style.borderRadius = "5px";
+        newDiv.style.fontFamily = "Arial, sans-serif";
+
+        document.body.appendChild(newDiv);
+      }
+    }
+  </script>
+</body>
+</html>

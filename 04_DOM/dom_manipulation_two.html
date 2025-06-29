@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hogwarts Spell List</title>
+  <style>
+  body {
+    background: linear-gradient(to right, #1e1b18, #4b2e39, #2e1a47);
+    color: #fff;
+    font-family: 'Georgia', serif;
+    margin: 0;
+    padding: 20px;
+  }
+  .container {
+    max-width: 600px;
+    margin: auto;
+  }
+  li {
+    margin: 10px 0;
+  }
+  input[type="text"] {
+    margin-left: 10px;
+    padding: 4px;
+  }
+  button {
+    margin-left: 5px;
+    padding: 4px 8px;
+    cursor: pointer;
+  }
+</style>
+
+</head>
+<body>
+  <div class="container">
+    <h3>Hogwarts Classes This Term:</h3>
+    <ul class="language" id="classList">
+      <li class="child">
+        <input type="checkbox" />
+        <span class="label">Defense Against the Dark Arts</span>
+        <input type="text" class="editInput" placeholder="Edit class name" />
+        <button onclick="editItem(this)">Edit</button>
+        <button onclick="deleteItem(this)">Delete</button>
+      </li>
+    </ul>
+
+    <h4>Add a New Spell or Class:</h4>
+    <input type="text" id="newClassInput" placeholder="Enter new class..." />
+    <button onclick="addNewClass()">Add</button>
+  </div>
+
+  <script>
+    function deleteItem(button) {
+      const li = button.parentElement;
+      const checkbox = li.querySelector("input[type='checkbox']");
+      if (checkbox.checked) {
+        li.remove();
+      } else {
+        alert("Please check the box to confirm deletion.");
+      }
+    }
+
+    function editItem(button) {
+      const li = button.parentElement;
+      const checkbox = li.querySelector("input[type='checkbox']");
+      const input = li.querySelector(".editInput");
+      const label = li.querySelector(".label");
+
+      if (checkbox.checked) {
+        const newValue = input.value.trim();
+        if (newValue !== "") {
+          label.textContent = newValue;
+          input.value = "";
+        } else {
+          alert("Enter a new name before editing.");
+        }
+      } else {
+        alert("Please check the box to confirm edit.");
+      }
+    }
+
+    function addNewClass() {
+      const newInput = document.getElementById("newClassInput");
+      const value = newInput.value.trim();
+
+      if (value === "") {
+        alert("Please enter a class name.");
+        return;
+      }
+
+      const ul = document.getElementById("classList");
+
+      const li = document.createElement("li");
+      li.className = "child";
+
+      li.innerHTML = `
+        <input type="checkbox" />
+        <span class="label">${value}</span>
+        <input type="text" class="editInput" placeholder="Edit class name" />
+        <button onclick="editItem(this)">Edit</button>
+        <button onclick="deleteItem(this)">Delete</button>
+      `;
+
+      ul.appendChild(li);
+      newInput.value = "";
+    }
+  </script>
+</body>
+</html>
